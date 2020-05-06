@@ -1,5 +1,12 @@
 package journal.article.audit;
 
+import static journal.article.audit.constants.JournalArticleAuditConstants.AUDIT_CLASSNAME;
+import static journal.article.audit.constants.JournalArticleAuditConstants.COMPANY_ID_ATTR;
+import static journal.article.audit.constants.JournalArticleAuditConstants.GROUP_ID_ATTR;
+import static journal.article.audit.constants.JournalArticleAuditConstants.ID_ATTR;
+import static journal.article.audit.constants.JournalArticleAuditConstants.IN_TRASH_ATTR;
+import static journal.article.audit.constants.JournalArticleAuditConstants.URL_TITLE_ATTR;
+
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.audit.AuditMessage;
@@ -24,16 +31,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = ModelListener.class)
 public class JournalArticleModelListener extends BaseModelListener<JournalArticle> {
 
-	private static final String URL_TITLE_ATTR = "urlTitle";
-	private static final String ID_ATTR = "id";
-	private static final String GROUP_ID_ATTR = "groupId";
-	private static final String COMPANY_ID_ATTR = "companyId";
-	private static final String AUDIT_CLASSNAME = JournalArticle.class.getName();
-	private static final String IN_TRASH_ATTR = "inTrash";
-
 	@Override
 	public void onBeforeRemove(JournalArticle journalArticle) throws ModelListenerException {
-
 		auditOnCreateOrRemove(EventTypes.DELETE, journalArticle);
 
 		super.onBeforeRemove(journalArticle);
