@@ -1,0 +1,4 @@
+Bundle-Name: maintenance-audit-storage
+Bundle-SymbolicName: maintenance.audit.storage
+Bundle-Version: 1.0.0
+
