@@ -73,7 +73,7 @@ public class JournalArticleModelListener extends BaseModelListener<JournalArticl
 
 		try {
 			AuditMessage auditMessage = AuditMessageBuilder.buildAuditMessage(eventType, AUDIT_CLASSNAME,
-					journalArticle.getUserId(), null);
+					journalArticle.getId(), null);
 
 			JSONObject additionalInfoJSONObject = auditMessage.getAdditionalInfo();
 

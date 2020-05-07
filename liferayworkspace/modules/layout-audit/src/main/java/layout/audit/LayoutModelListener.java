@@ -1,5 +1,11 @@
 package layout.audit;
 
+import static layout.audit.constants.LayoutAuditConstants.FRIENDLY_URL_ATTR;
+import static layout.audit.constants.LayoutAuditConstants.GROUP_ID_ATTR;
+import static layout.audit.constants.LayoutAuditConstants.GROUP_NAME_ATTR;
+import static layout.audit.constants.LayoutAuditConstants.LAYOUT_ID_ATTR;
+import static layout.audit.constants.LayoutAuditConstants.NAME_ATTR;
+
 import com.liferay.portal.kernel.audit.AuditMessage;
 import com.liferay.portal.kernel.audit.AuditRouter;
 import com.liferay.portal.kernel.exception.ModelListenerException;
@@ -8,6 +14,7 @@ import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.service.LayoutLocalService;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.security.audit.event.generators.constants.EventTypes;
 import com.liferay.portal.security.audit.event.generators.util.Attribute;
 import com.liferay.portal.security.audit.event.generators.util.AttributesBuilder;
@@ -43,13 +50,13 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 	@Override
 	public void onBeforeUpdate(Layout newLayout) throws ModelListenerException {
 		try {
-			Layout currentLayout = _layoutLocalService.getLayout(newLayout.getPlid());
+			Layout currentLayout = _layoutLocalService.getLayout(newLayout.getLayoutId());
 
 			List<Attribute> attributes = getModifiedAttributes(newLayout, currentLayout);
 
 			if (!attributes.isEmpty()) {
 				AuditMessage auditMessage = AuditMessageBuilder.buildAuditMessage(EventTypes.UPDATE,
-						Layout.class.getName(), newLayout.getPlid(), attributes);
+						Layout.class.getName(), newLayout.getLayoutId(), attributes);
 
 				_auditRouter.route(auditMessage);
 			}
@@ -63,10 +70,8 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 
 		AttributesBuilder attributesBuilder = new AttributesBuilder(newLayout, currentLayout);
 
-		attributesBuilder.add("name");
-		attributesBuilder.add("layoutId");
-		attributesBuilder.add("groupId");
-		attributesBuilder.add("friendlyURL");
+		attributesBuilder.add(NAME_ATTR);
+		attributesBuilder.add(FRIENDLY_URL_ATTR);
 
 		return attributesBuilder.getAttributes();
 	}
@@ -75,12 +80,13 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 
 		try {
 			AuditMessage auditMessage = AuditMessageBuilder.buildAuditMessage(eventType, Layout.class.getName(),
-					layout.getUserId(), null);
+					layout.getLayoutId(), null);
 
 			JSONObject additionalInfoJSONObject = auditMessage.getAdditionalInfo();
 
-			additionalInfoJSONObject.put("layoutName", layout.getName()).put("layoutId", layout.getLayoutId())
-					.put("layoutFriendlyURL", layout.getFriendlyURL()).put("layoutGroupId", layout.getGroupId());
+			additionalInfoJSONObject.put(NAME_ATTR, layout.getName()).put(LAYOUT_ID_ATTR, layout.getLayoutId())
+					.put(FRIENDLY_URL_ATTR, layout.getFriendlyURL()).put(GROUP_ID_ATTR, layout.getGroupId())
+					.put(GROUP_NAME_ATTR, layout.getGroup().getName(LocaleUtil.getDefault()));
 
 			_auditRouter.route(auditMessage);
 		} catch (Exception e) {
