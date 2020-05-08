@@ -1,0 +1,3 @@
+Bundle-Name: document-library-audit
+Bundle-SymbolicName: com.liferay.mcv.document.library.audit
+Bundle-Version: 1.0.0
