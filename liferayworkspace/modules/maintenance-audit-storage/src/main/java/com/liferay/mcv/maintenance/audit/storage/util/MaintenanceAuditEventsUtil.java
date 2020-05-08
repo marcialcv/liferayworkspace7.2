@@ -34,7 +34,7 @@ public class MaintenanceAuditEventsUtil {
 				null, createDateGT, createDateLT, null, null, null, null, null, null, 0, null, true, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		auditEventList.forEach(auditEvent -> auditEventLocalService.deleteAuditEvent(auditEvent));
+		auditEventList.forEach(auditEventLocalService::deleteAuditEvent);
 	}
 	
 	@Reference
