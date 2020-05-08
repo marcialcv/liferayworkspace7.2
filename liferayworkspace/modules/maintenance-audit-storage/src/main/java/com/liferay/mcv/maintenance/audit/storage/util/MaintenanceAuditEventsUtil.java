@@ -1,4 +1,4 @@
-package com.liferay.mcv.maintenance.audit.storage;
+package com.liferay.mcv.maintenance.audit.storage.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
