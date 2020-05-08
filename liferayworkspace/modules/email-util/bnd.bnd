@@ -1,0 +1,5 @@
+Bundle-Name: email-util
+Bundle-SymbolicName: com.liferay.mcv.email.service.util
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.mcv.email.service.util

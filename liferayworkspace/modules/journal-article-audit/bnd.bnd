@@ -1,3 +1,3 @@
 Bundle-Name: journal-article-audit
-Bundle-SymbolicName: journal.article.audit
+Bundle-SymbolicName: com.liferay.mcv.journal.article.audit
 Bundle-Version: 1.0.0
