@@ -5,6 +5,7 @@ import com.liferay.asset.publisher.web.internal.util.AssetPublisherCustomizer;
 import com.liferay.asset.util.AssetEntryQueryProcessor;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -86,13 +87,17 @@ public class MyAssetPublisherCustomizer implements AssetPublisherCustomizer {
 		long[] categoryIds = ParamUtil.getLongValues(PortalUtil.getOriginalServletRequest(httpServletRequest),
 				p_categoryIds);
 
-		assetEntryQuery.setAllCategoryIds(categoryIds);
+		if (categoryIds.length > 0) {
+			assetEntryQuery.setAllCategoryIds(categoryIds);
+		}
 	}
 
 	protected void setKeywordsFromRequest(AssetEntryQuery assetEntryQuery, HttpServletRequest httpServletRequest) {
 		String keywords = ParamUtil.getString(PortalUtil.getOriginalServletRequest(httpServletRequest), p_keywords);
 
-		assetEntryQuery.setKeywords(keywords);
+		if (Validator.isNotNull(keywords)) {
+			assetEntryQuery.setKeywords(keywords);
+		}
 	}
 
 	@Reference(target = "(component.name=com.liferay.asset.publisher.web.internal.util.DefaultAssetPublisherCustomizer)")

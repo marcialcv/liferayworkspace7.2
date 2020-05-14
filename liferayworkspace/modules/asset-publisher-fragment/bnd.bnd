@@ -6,8 +6,7 @@ Import-Package:\
 	com.liferay.portal.kernel.portlet;version="[9.0.0,9.1)",\
 	\
 	*
-Export-Package: com.liferay.asset.publisher.web.internal.util, \
-	com.liferay.asset.publisher.web.internal.portlet
+Export-Package: com.liferay.asset.publisher.web.internal.util
 Provide-Capability:\
 	soy;\
 		type="asset-publisher-web";\
