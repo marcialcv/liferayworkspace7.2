@@ -15,7 +15,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author marcialcalvo
  */
 @Component(immediate = true, property = { "service.ranking:Integer=100" }, service = AssetPublisherCustomizer.class)
-public class ApCategoriesFilter implements AssetPublisherCustomizer {
+public class MyAssetPublisherCustomizer implements AssetPublisherCustomizer {
 
 	@Override
 	public Integer getDelta(HttpServletRequest httpServletRequest) {
@@ -77,6 +77,8 @@ public class ApCategoriesFilter implements AssetPublisherCustomizer {
 		_defaultAssetPublisherCustomizer.setAssetEntryQueryOptions(assetEntryQuery, httpServletRequest);
 
 		setAssetCategoryIdsFromRequest(assetEntryQuery, httpServletRequest);
+
+		setKeywordsFromRequest(assetEntryQuery, httpServletRequest);
 	}
 
 	protected void setAssetCategoryIdsFromRequest(AssetEntryQuery assetEntryQuery,
@@ -87,9 +89,17 @@ public class ApCategoriesFilter implements AssetPublisherCustomizer {
 		assetEntryQuery.setAllCategoryIds(categoryIds);
 	}
 
+	protected void setKeywordsFromRequest(AssetEntryQuery assetEntryQuery, HttpServletRequest httpServletRequest) {
+		String keywords = ParamUtil.getString(PortalUtil.getOriginalServletRequest(httpServletRequest), p_keywords);
+
+		assetEntryQuery.setKeywords(keywords);
+	}
+
 	@Reference(target = "(component.name=com.liferay.asset.publisher.web.internal.util.DefaultAssetPublisherCustomizer)")
 	private AssetPublisherCustomizer _defaultAssetPublisherCustomizer;
 
 	private static final String p_categoryIds = "categoryIds";
+
+	private static final String p_keywords = "keywords";
 
 }
