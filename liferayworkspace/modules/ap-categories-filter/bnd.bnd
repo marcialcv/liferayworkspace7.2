@@ -1,0 +1,7 @@
+Bundle-Name: ap-categories-filter
+Bundle-SymbolicName: ap.categories.filter
+Bundle-Version: 1.0.0
+Import-Package:\
+	com.liferay.asset.publisher.web.internal.util,\
+	\
+	*
