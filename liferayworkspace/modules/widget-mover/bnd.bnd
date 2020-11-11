@@ -1,0 +1,5 @@
+Bundle-Name: widget-mover
+Bundle-SymbolicName: com.liferay.widget.mover
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.widget.mover.constants
+Import-Package:	*
