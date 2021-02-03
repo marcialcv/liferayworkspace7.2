@@ -1,0 +1,5 @@
+Bundle-Name: active-mq-consumer
+Bundle-SymbolicName: active.mq.consumer
+Bundle-Version: 1.0.0
+Export-Package: active.mq.consumer.constants
+Import-Package:	*;resolution:=optional

@@ -1,0 +1,5 @@
+Bundle-Name: active-mq-producer
+Bundle-SymbolicName: active.mq.producer
+Bundle-Version: 1.0.0
+Export-Package: active.mq.producer.constants
+Import-Package:	*;resolution:=optional
