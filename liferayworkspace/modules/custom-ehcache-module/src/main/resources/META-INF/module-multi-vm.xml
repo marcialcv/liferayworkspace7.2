@@ -13,16 +13,10 @@
 	<cache
 			eternal="false"
 			maxElementsInMemory="20000"
-			name="com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.portlet.journal.model.impl.JournalArticleImpl"
+			name="com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.journal.model.impl.JournalArticleImpl"
 			overflowToDisk="false"
 			timeToIdleSeconds="600"
 	>
-		<cacheEventListenerFactory
-				class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
-				properties="replicatePuts=false,replicateUpdatesViaCopy=false"
-				propertySeparator=","
-		/>
-		<bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
 	</cache>	
 	<cache
                         eternal="false"
@@ -31,12 +25,6 @@
                         overflowToDisk="false"
                         timeToIdleSeconds="600"
          >
-                 <cacheEventListenerFactory
-                       		class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
-	                        properties="replicatePuts=false,replicateUpdatesViaCopy=false"
-        	                propertySeparator=","
-                />
-                <bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
         </cache>
 	<cache
                         eternal="false"
@@ -45,11 +33,5 @@
                         overflowToDisk="false"
                         timeToIdleSeconds="600"
          >
-                 <cacheEventListenerFactory
-                                class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
-                                properties="replicatePuts=false,replicateUpdatesViaCopy=false"
-                                propertySeparator=","
-                />
-                <bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
         </cache>
 </ehcache>
