@@ -1,0 +1,55 @@
+<ehcache
+	dynamicConfig="true"
+	monitoring="off"
+	name="module-multi-vm"
+	updateCheck="false"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+>
+	<!--
+		EUIPO Customization
+		Custom caches
+	-->
+	<cache
+			eternal="false"
+			maxElementsInMemory="20000"
+			name="com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.portlet.journal.model.impl.JournalArticleImpl"
+			overflowToDisk="false"
+			timeToIdleSeconds="600"
+	>
+		<cacheEventListenerFactory
+				class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
+				properties="replicatePuts=false,replicateUpdatesViaCopy=false"
+				propertySeparator=","
+		/>
+		<bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
+	</cache>	
+	<cache
+                        eternal="false"
+                        maxElementsInMemory="1000"
+                        name="SCHEDULE_CALL"
+                        overflowToDisk="false"
+                        timeToIdleSeconds="600"
+         >
+                 <cacheEventListenerFactory
+                       		class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
+	                        properties="replicatePuts=false,replicateUpdatesViaCopy=false"
+        	                propertySeparator=","
+                />
+                <bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
+        </cache>
+	<cache
+                        eternal="false"
+                        maxElementsInMemory="1000"
+                        name="RECOMMENDED_SEARCHES"
+                        overflowToDisk="false"
+                        timeToIdleSeconds="600"
+         >
+                 <cacheEventListenerFactory
+                                class="com.liferay.portal.cache.ehcache.LiferayCacheEventListenerFactory"
+                                properties="replicatePuts=false,replicateUpdatesViaCopy=false"
+                                propertySeparator=","
+                />
+                <bootstrapCacheLoaderFactory class="com.liferay.portal.cache.ehcache.LiferayBootstrapCacheLoaderFactory" />
+        </cache>
+</ehcache>

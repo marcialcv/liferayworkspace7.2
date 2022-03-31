@@ -1,0 +1,3 @@
+Bundle-Name: custom-ehcache-module
+Bundle-SymbolicName: custom.ehcache.module
+Bundle-Version: 1.0.0
