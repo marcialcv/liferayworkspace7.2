@@ -6,10 +6,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
 >
-	<!--
-		EUIPO Customization
-		Custom caches
-	-->
 	<cache
 			eternal="false"
 			maxElementsInMemory="20000"
