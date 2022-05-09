@@ -28,11 +28,17 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class BusinessCoreStatus extends HttpServlet {
 	
-	//Event on all portlets_initialized
+	//Resolved on all portlets_initialized
+	@Reference(
+		target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-"
+	)
+	private ModuleServiceLifecycle _portal_initialized;
+	
+	//Resolved on all portlets_initialized
 	@Reference(
 		target = ModuleServiceLifecycle.PORTLETS_INITIALIZED, unbind = "-"
 	)
-	private ModuleServiceLifecycle _moduleServiceLifecycle;
+	private ModuleServiceLifecycle _portlets_initialized;
 	
 	//Inject your OSGi business core dependencies as well
 	//@Reference
