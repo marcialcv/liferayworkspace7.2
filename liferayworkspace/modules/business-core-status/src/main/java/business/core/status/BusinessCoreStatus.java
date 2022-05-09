@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class BusinessCoreStatus extends HttpServlet {
 	
-	//Resolved on all portlets_initialized
+	//Resolved on portal_initialized
 	@Reference(
 		target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-"
 	)
