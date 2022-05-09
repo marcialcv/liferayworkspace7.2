@@ -2,9 +2,11 @@ package business.core.status;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -22,7 +24,9 @@ import org.osgi.service.component.annotations.Reference;
     immediate = true,
     property = {
         "osgi.http.whiteboard.context.path=/",
-        "osgi.http.whiteboard.servlet.pattern=/business-core-status/check"
+        "osgi.http.whiteboard.servlet.pattern=/business-core-status/check",
+        "portlets.target=(|(javax.portlet.name=MyFirstBusinessPortlet)(javax.portlet.name=MySecondBusinessPortlet))",
+        "portlets.cardinality.minimum:Integer=2"
     },
     service = Servlet.class
 )
@@ -41,8 +45,8 @@ public class BusinessCoreStatus extends HttpServlet {
 	private ModuleServiceLifecycle _portlets_initialized;
 	
 	//Inject your OSGi business core dependencies as well
-	//@Reference
-	//private MyCustomService myCustomService;
+	@Reference
+	List<Portlet> portlets;
 	
 
     @Override
