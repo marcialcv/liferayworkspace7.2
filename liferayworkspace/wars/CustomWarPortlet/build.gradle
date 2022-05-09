@@ -1,0 +1,43 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
+		}
+	}
+
+	dependencies {
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.css.builder", version: "3.0.3"
+	}
+}
+
+apply plugin: "com.liferay.css.builder"
+
+dependencies {
+	compile group: "org.springframework", name: "spring-aop"
+	compile group: "org.springframework", name: "spring-beans"
+	compile group: "org.springframework", name: "spring-context"
+	compile group: "org.springframework", name: "spring-core"
+	compile group: "org.springframework", name: "spring-expression"
+	compile group: "org.springframework", name: "spring-web"
+	compile group: "org.springframework", name: "spring-webmvc"
+	compile group: "org.springframework", name: "spring-webmvc-portlet"
+
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "javax.portlet", name: "portlet-api"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.0.2"
+
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common", version: "4.0.0"
+}
+
+war {
+	dependsOn buildCSS
+	exclude "**/*.scss"
+
+	filesMatching("**/.sass-cache/") {
+		it.path = it.path.replace(".sass-cache/", "")
+	}
+
+	includeEmptyDirs = false
+}
