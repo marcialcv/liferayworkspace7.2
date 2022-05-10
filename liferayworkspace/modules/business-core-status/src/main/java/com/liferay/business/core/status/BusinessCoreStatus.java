@@ -1,4 +1,4 @@
-package business.core.status;
+package com.liferay.business.core.status;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -21,12 +21,13 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marcial Calvo
  */
 @Component(
+	configurationPid = "com.liferay.business.core.status.BusinessCoreStatus",
     immediate = true,
     property = {
         "osgi.http.whiteboard.context.path=/",
         "osgi.http.whiteboard.servlet.pattern=/business-core-status/check",
-        "portlets.target=(|(javax.portlet.name=MyFirstBusinessPortlet)(javax.portlet.name=MySecondBusinessPortlet))",
-        "portlets.cardinality.minimum:Integer=2"
+        "portlets.target=(|(javax.portlet.name=*))",
+        "portlets.cardinality.minimum:Integer=1"
     },
     service = Servlet.class
 )
