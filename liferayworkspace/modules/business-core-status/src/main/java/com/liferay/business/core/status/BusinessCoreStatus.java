@@ -48,6 +48,10 @@ public class BusinessCoreStatus extends HttpServlet {
 	//Inject your OSGi business core dependencies as well
 	@Reference
 	List<Portlet> portlets;
+
+	// Use this to check if the theme is ready
+	//@Reference(target = "(osgi.web.symbolicname=mytheme)")
+    //private ServletContext theme;
 	
 
     @Override
